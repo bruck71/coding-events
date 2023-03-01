@@ -27,17 +27,17 @@ public class EventController {
     @GetMapping("create")
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
+        model.addAttribute(new Event());
         return "events/create";
     }
 
-    //Handles add Form
+    //Handles create event Form
     //Lives at /events/create - Handles different type of request as (renderCreateEventForm) so it is ok to be at same location
     @PostMapping("create")
     public String createEvent(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
 
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
-            model.addAttribute("errorMsg", "Bad data!");
             return "events/create";
         }
 
