@@ -26,7 +26,7 @@ public class EventCategoryController {
         return "eventCategories/index";
     }
 
-    //Creates Event Form
+    //Displays Event Category Form
     @GetMapping("create")
     public String renderCreateEventCategoryForm(Model model) {
         model.addAttribute("title", "Create Category");
@@ -34,7 +34,7 @@ public class EventCategoryController {
         return "eventCategories/create";
     }
 
-    //Handles Create Event Form
+    //Processes Create Event Category Form
     @PostMapping("create")
     public String processCreateEventCategoryForm(@Valid @ModelAttribute EventCategory eventCategory, Errors errors, Model model) {
 
