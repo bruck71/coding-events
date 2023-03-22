@@ -34,7 +34,7 @@ public class EventController {
                 model.addAttribute("title", "Invalid Category ID: " + categoryId);
             } else {
                 EventCategory category = result.get();
-                model.addAttribute("title", "Events in category: " + category.getName());
+                model.addAttribute("title", "Events in Category: " + category.getName());
                 model.addAttribute("events", category.getEvents());
             }
         }
@@ -81,6 +81,22 @@ public class EventController {
             }
         }
         return "redirect:";
+    }
+
+    @GetMapping("detail")
+    public String displayEventDetails(@RequestParam Integer eventId, Model model) {
+
+        Optional<Event> result = eventRepository.findById(eventId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Event ID: " + eventId);
+        } else {
+            Event event = result.get();
+            model.addAttribute("title", event.getName() + " Details");
+            model.addAttribute("event", event);
+        }
+
+        return "events/detail";
     }
 
 }
